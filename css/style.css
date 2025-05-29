@@ -1,0 +1,63 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0px;
+}
+
+/* 
+ * LAYOUT
+ */
+
+header {
+    display: flex;
+    border-bottom: 2px solid black;
+}
+
+body {
+    width: 100%;
+    margin: 40px auto;
+}
+
+/*
+ * TYPOGRAPHY
+ */
+h1 {
+    margin: 5px 0px;
+}
+
+h2, h3 {
+    margin: 20px 0 5px 0;
+}
+
+/*
+ * CLASSES
+ */
+
+.header-title {
+    flex: 1;
+}
+
+.header-info {
+    flex: 0 0 auto; /* Don't grow, don't shrink, auto size */
+}
+
+.header-info a {
+    padding-left: 1em;
+}
+
+/* 
+ * GAME
+ */
+#dino-game {
+    height: 80px;
+    width: 100%;
+    background-color: gray;
+}
+
+/*
+ * QUERIES
+ */
+@media (min-width: 600px) {
+    body {
+        width: 70%;
+    }
+}
