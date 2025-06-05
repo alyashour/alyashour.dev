@@ -5,63 +5,34 @@
     <meta charset="UTF-8">
     <title>Aly Ashour</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+
+    <!-- This loads partials into the doc. -->
+    <script defer src="js/includes.js"></script>
 </head>
 
 <body>
-    <header>
-        <div class="header-title">
-            <h1>Aly Ashour</h1>
-            <p>Comp. Software Eng. Student at Western University, Linux Co-op at JD Power</p>
-        </div>
-        <div class="header-info">
-            <p>Github: <a href="https://github.com/alyashour">github.com/alyashour</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/alymashour/">linkedin.com/in/alymashour</a></p>
-            <p>idk yet: <a href=""></a></p>
-        </div>
-    </header>
+    <!-- Header -->
+    <header partial="partials/header.html"></header>
 
     <main>
-        <h2>About Me</h2>
-        <p>
-            My name is Aly Ashour, and I'm an engineer. <br>
-            I live to work with computers and technology and odds are if it's metal or silicon I want my hands on it.
-            <br>
-            <!-- make this href point to WEAP & business -->
-            I write lots of code and chew on cables and keyboards both on my own and on any team that'll let me in
-            (<a href="">and even some that don't</a>).
-        </p>
+        <!-- Left/right split -->
+        <div class="main-layout">
+            <!-- Main content section -->
+            <section class="main-content" partial="partials/landing-content.html"></section>
 
-        <h3>Passions</h3>
-        <p>
-                I love learning. In any flavour. Classes, courses, videos, books. In a perfect world I'd finish my degree
-            and run right back in for another again and again until I'd tried everything. I want to know how everything works, 
-            all the way down.
-            I'm also an occasional teacher. I've tutored math and physics for 5 years and give lectures on computer science for
-            students through my club at Western.
-        </p>
-        <p>
-            Besides that I adore space, physics, and ancient history, I play chess, some video games, football (not the american one), 
-            and if I had one wish I'd give everyone the chance to look through a telescope.
-        </p>
-
-        <h2>Projects</h2>
-
-        <div>
-            <p><b>Gerstner Waves Water Shader w/ C++ and OpenGL</b></p>
-            <img src="img/gerstner_waves.gif" alt="Waves graphics gif">
+            <!-- Aside, info section -->
+            <aside class="info-aside">
+                <p>Test text</p>
+            </aside>
         </div>
-        
-        <div>
-            <p><b>Marching Cubes Surface Extraction</b></p>
-            <img src="img/marching_cubes.gif" alt="Marching cubes gif">
-        </div>
-        <p><b>See more <a href="projects.html">here</a>!</b></p>
-        <!-- To be added later... -->
-        <!-- <h2>Documents</h2> -->
 
-        <div id="dino-game"></div>
-        <script src="js/dino-game.js"></script>
+        <!-- Game -->
+        <div partial="partials/dino-game.html"></div>
     </main>
+
+    <!-- Footer -->
+    <footer partial="partials/footer.html"></footer>
 </body>
 
 </html>

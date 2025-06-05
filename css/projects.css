@@ -1,0 +1,32 @@
+.projects-scroller {
+    display: flex;
+    gap: 30px;
+    flex-wrap: no-wrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin: 20px 0;
+}
+
+.project-container {
+    flex-shrink: 0;
+    height: 100%;
+    width: min(45%, 200px);
+    max-width: 250px;
+    border: 2px solid black;
+    padding: 0 10px 10px 10px;
+}
+
+.project-container h3 {
+    text-wrap: wrap;
+    overflow: clip;
+    margin-bottom: 5px;
+    height: 2rem;
+    text-align: center;
+    font-size: medium;
+}
+
+img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}

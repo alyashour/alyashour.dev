@@ -9,12 +9,19 @@
 
 header {
     display: flex;
+    gap: 5px;
     border-bottom: 2px solid black;
+}
+
+footer {
+    border-top: 2px solid black;
 }
 
 body {
     width: 100%;
     margin: 40px auto;
+    border-left: 2px solid black;
+    padding-left: 10px;
 }
 
 /*
@@ -28,6 +35,24 @@ h2, h3 {
     margin: 20px 0 5px 0;
 }
 
+a {
+  color: #0066cc;             /* soft blue */
+  text-decoration: none;      /* remove underline */
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #004999;             /* darker on hover */
+  text-decoration: underline; /* or a subtle underline */
+}
+
+.main-content p {
+    text-indent: 1em each-line;
+    margin: 1rem 0;
+    margin-left: 20px;
+}
+
 /*
  * CLASSES
  */
@@ -38,10 +63,32 @@ h2, h3 {
 
 .header-info {
     flex: 0 0 auto; /* Don't grow, don't shrink, auto size */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 5px;
+    justify-content: flex-end;
 }
 
 .header-info a {
     padding-left: 1em;
+}
+
+.main-layout {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.main-content {
+    flex: 2;
+    width: 100%;
+}
+
+.info-aside {
+    flex: 1;
+    background-color: bisque;
+    margin: 15px;
 }
 
 /* 
