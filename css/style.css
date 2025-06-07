@@ -24,6 +24,36 @@ body {
     padding-left: 10px;
 }
 
+aside table {
+    width: 100%;
+    border: 2px solid black;
+}
+
+aside table th {
+    text-align: left;
+    background-color: lightgray;
+}
+
+aside table a {
+    color: black;
+    text-decoration: underline;
+}
+
+/*
+ * TRANSFORMS
+ */
+figure {
+    width: 50%;
+    border: 2px solid black;
+    margin: 10px 0;
+    transition: transform 0.3s ease;
+    /* display: inline-block; */
+}
+
+figure:hover {
+    transform: scale(1.5);
+}
+
 /*
  * TYPOGRAPHY
  */
@@ -31,26 +61,31 @@ h1 {
     margin: 5px 0px;
 }
 
-h2, h3 {
+h2,
+h3 {
     margin: 20px 0 5px 0;
 }
 
 a {
-  color: #0066cc;             /* soft blue */
-  text-decoration: none;      /* remove underline */
-  font-weight: 500;
-  transition: all 0.2s ease;
+    color: #0066cc;
+    /* soft blue */
+    text-decoration: none;
+    /* remove underline */
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-  color: #004999;             /* darker on hover */
-  text-decoration: underline; /* or a subtle underline */
+    color: #004999;
+    /* darker on hover */
+    text-decoration: underline;
+    /* or a subtle underline */
 }
 
 .main-content p {
-    text-indent: 1em each-line;
+    /* text-indent: 1em each-line; */
     margin: 1rem 0;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 /*
@@ -62,7 +97,8 @@ a:hover {
 }
 
 .header-info {
-    flex: 0 0 auto; /* Don't grow, don't shrink, auto size */
+    flex: 0 0 auto;
+    /* Don't grow, don't shrink, auto size */
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -87,7 +123,6 @@ a:hover {
 
 .info-aside {
     flex: 1;
-    background-color: bisque;
     margin: 15px;
 }
 
