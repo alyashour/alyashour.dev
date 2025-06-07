@@ -61,6 +61,14 @@ h1 {
     margin: 5px 0px;
 }
 
+h1 a {
+    color: black;
+}
+
+h1 a:hover {
+    color: black;
+}
+
 h2,
 h3 {
     margin: 20px 0 5px 0;
