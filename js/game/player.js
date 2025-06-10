@@ -4,7 +4,7 @@ import Rectangle from "./rectangle.js";
 import RigidBody from "./rigidbody.js";
 
 export default class Player extends Component {
-    constructor(width, height, color, acceleration, rotationSpeed, vDampingRate=0.999, x=0, y=0, image_path=null) {
+    constructor(width, height, color, acceleration, rotationSpeed, image_path=null, vDampingRate=0.999, x=0, y=0) {
         super(width, height, color, x, y);
         this.rigidBody = new RigidBody(x, y, width, height, acceleration, vDampingRate);
         this.rotationSpeed = rotationSpeed;

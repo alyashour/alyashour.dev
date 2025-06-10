@@ -68,21 +68,20 @@ export class GameArea {
         for (let component of this.components) {
             this.context.save();
 
-            // 1. Compute center of the rectangle
+            // Compute center of the component
             const cx = component.x + component.width / 2;
             const cy = component.y + component.height / 2;
 
-            // 2. Move origin to center of rectangle
+            // Translate frame to center of component
             this.context.translate(cx, cy);
 
-            // 3. Rotate
+            // Rotate component
             this.context.rotate(component.angle);
 
-            // 4. Draw rectangle with top-left corner at (-width/2, -height/2)
-            //    so it rotates around its center but ends up in the correct place
-            this.context.fillStyle = component.color;
-            this.context.fillRect(-component.width / 2, -component.height / 2, component.width, component.height);
+            // Draw component
+            component.draw();
 
+            // Pop stack
             this.context.restore();
         }
     }

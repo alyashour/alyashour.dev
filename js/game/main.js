@@ -55,7 +55,7 @@ function start(gameArea) {
     const background = new Rectangle(canvas.width, canvas.height, "black", 0, 0);
     gameArea.addToScene(background);
 
-    const player = new Player(30, 30, "red", 0.3, 0.1);
+    const player = new Player(30, 30, "blue", 0.3, 0.1, "/img/asteroids_player_white.svg");
 
     gameArea.addToScene(player);
 }
