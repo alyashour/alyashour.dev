@@ -71,7 +71,7 @@ function main() {
     try {
         start(gameArea);
     } catch (err) {
-        const text = `Asteroids game error! ${err}`
+        const text = `Asteroids game error! ${err.message}.\n\nStack Trace ${err.stack}`
         if (FAIL_FAST) alert(text);
         else console.log(text);
 
