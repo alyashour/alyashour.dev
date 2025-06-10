@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="/css/header.css">
 
     <!-- This loads partials into the doc. -->
-    <script defer src="/js/includes.js"></script>
+    <script defer type="module" src="/js/includes.js"></script>
+    <!-- This loads the game -->
+    <script defer type="module" src="/js/game/component.js"></script>
+    <script defer type="module" src="/js/game/rectangle.js"></script>
+    <script defer type="module" src="/js/game/util.js"></script>
+    <script defer type="module" src="/js/game/main.js"></script>
 </head>
 
 <body>
@@ -17,6 +22,9 @@
     <header partial="/partials/header.html"></header>
 
     <main>
+        <!-- temp -->
+        <div partial="/partials/asteroids-game.html"></div>
+
         <!-- Left/right split -->
         <div class="main-layout">
             <!-- Main content section -->
@@ -27,7 +35,7 @@
         </div>
 
         <!-- Game -->
-        <div partial="/partials/asteroids-game.html"></div>
+        <!-- <div id="game" partial="/partials/asteroids-game.html"></div> -->
     </main>
 
     <!-- Footer -->

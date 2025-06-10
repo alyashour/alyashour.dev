@@ -39,6 +39,13 @@ aside table a {
     text-decoration: underline;
 }
 
+canvas {
+    border: 2px solid black;
+    width: 100%;
+    aspect-ratio: 6 / 1; /* THIS IS ARBITRARY! */
+    margin: 5px;
+}
+
 /*
  * TRANSFORMS
  */

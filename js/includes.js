@@ -1,4 +1,4 @@
-async function includeHTML() {
+export default async function includeHTML() {
   let hasPartials = true;
 
   while (hasPartials) {
