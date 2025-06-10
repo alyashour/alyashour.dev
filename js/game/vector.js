@@ -7,4 +7,8 @@ export default class Vector2 {
     add(v) {
         return new Vector2(this.x + v.x, this.y + v.y);
     }
+
+    times(scalar) {
+        return new Vector2(this.x * scalar, this.y * scalar);
+    }
 }

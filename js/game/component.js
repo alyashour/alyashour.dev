@@ -2,7 +2,6 @@ import { getGlobalGameArea } from "./gameArea.js";
 
 /**
  * A component is any art or glyph in the game with a position and size.
- * May need to be updated.
  */
 export default class Component {
     constructor(width, height, color, x, y) {

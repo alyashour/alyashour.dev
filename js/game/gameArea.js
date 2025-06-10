@@ -30,6 +30,7 @@ export class GameArea {
 
         this.context = this.canvas.getContext('2d');
         this.components = [];
+        this.rigidBodies = [];
         this.interval = null;
 
         this.keys = []; // key presses
@@ -58,11 +59,12 @@ export class GameArea {
     #update() {
         this.#clear();
 
-        // Allow components to update and draw
+        // Allow components to update
         for (let component of this.components) {
             component.update();
         }
 
+        // Allow components to draw
         for (let component of this.components) {
             this.context.save();
 
@@ -95,5 +97,9 @@ export class GameArea {
 
     addToScene(component) {
         this.components.push(component);
+    }
+
+    addToPhysics(rigidBody) {
+        this.components.push(rigidBody);
     }
 }
