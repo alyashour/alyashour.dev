@@ -1,4 +1,4 @@
-import { frameRateToMs } from "./util.js";
+import { frameRateToMs, round } from "./util.js";
 
 let globalGameArea;
 
@@ -19,15 +19,33 @@ export function setGlobalGameArea(gameArea) {
 }
 
 export class GameArea {
-    constructor(container, canvas, fps) {
+    constructor(container, canvas, fps, expectedAR) {
         if (!container) throw new Error("Container is null.");
         if (!canvas) throw new Error("Canvas is null");
         if (!fps) throw new Error("FPS is null");
 
+        // initialize container
         this.container = container;
-        this.canvas = canvas;
-        this.fps = fps
 
+        // initialize canvas
+        this.canvas = canvas;
+        // Make sure the aspect ratio is as expected, otherwise throw an error
+        // Since rectangles and stuff are hardcoded in, I'm adding this check
+        // If this check fails, odds are the code just needs to be rewritten with new values
+        // There are better solutions I don't care to implement
+        const aspectRatio = this.canvas.clientWidth / this.canvas.clientHeight;
+        const ratio = aspectRatio / expectedAR; // ratio between them
+        const percentDifference = Math.abs(1 - ratio); // How much off expected are we?
+        const allowedDifference = 0.05; // I'll let us be ±5%
+        if (percentDifference > allowedDifference) {
+            throw new Error(`
+                Canvas aspect ratio mismatch!
+                Expected ${round(expectedAR, 3)}, found (${round(aspectRatio, 3)})
+            `);
+        }
+
+        // initialize other fields
+        this.fps = fps
         this.context = this.canvas.getContext('2d');
         this.components = [];
         this.rigidBodies = [];

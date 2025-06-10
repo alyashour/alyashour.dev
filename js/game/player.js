@@ -4,16 +4,11 @@ import Rectangle from "./rectangle.js";
 import RigidBody from "./rigidbody.js";
 
 export default class Player extends Component {
-    constructor(width, height, color, acceleration, rotationSpeed, image_path=null, vDampingRate=0.999, x=0, y=0) {
-        super(width, height, color, x, y);
-        this.rigidBody = new RigidBody(x, y, width, height, acceleration, vDampingRate);
+    constructor(width, height, acceleration, rotationSpeed, x=0, y=0) {
+        super(width, height, "", x, y);
+        this.rigidBody = new RigidBody(x, y, width, height, acceleration, 0.999);
         this.rotationSpeed = rotationSpeed;
-
-        if (image_path) {
-            this.sprite = new Sprite(width, height, color, x, y, image_path);
-        } else {
-            this.sprite = new Rectangle(width, height, color, x, y, image_path);
-        }
+        this.sprite = new Sprite(width, height, x, y, "/img/asteroids_player_white.svg");
     }
 
     // TEMPORARILY COVER THE INHERITED VALUES
@@ -38,7 +33,7 @@ export default class Player extends Component {
     update() {
         const keys = this.gameArea.keys;
 
-        // Get inputs and apply them
+        // Get movement inputs and apply them
         if (keys['ArrowUp']) {
             this.rigidBody.vx += this.rigidBody.acceleration * Math.sin(this.angle);
             this.rigidBody.vy -= this.rigidBody.acceleration * Math.cos(this.angle);
@@ -49,6 +44,11 @@ export default class Player extends Component {
         }
         if (keys['ArrowLeft']) this.angle -= this.rotationSpeed;
         if (keys['ArrowRight']) this.angle += this.rotationSpeed;
+
+        // shoot when the spacebar is pressed
+        if (keys['Spacebar']) {
+            alert('shoot!')
+        }
 
         this.rigidBody.update();
     }

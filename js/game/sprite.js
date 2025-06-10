@@ -1,8 +1,8 @@
 import Component from "./component.js";
 
 export default class Sprite extends Component {
-    constructor(width, height, color, x, y, image_path) {
-        super(width, height, color, x, y);
+    constructor(width, height, x, y, image_path) {
+        super(width, height, "", x, y);
 
         this.image = new Image();
         this.image.src = image_path;
