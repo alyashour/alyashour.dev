@@ -10,7 +10,8 @@ export default class Rectangle extends Component {
      * @param {*} y 
      */
     constructor(width, height, color, x, y) {
-        super(width, height, color, x, y);
+        super(width, height, x, y);
+        this.color = color;
     }
 
     draw() {

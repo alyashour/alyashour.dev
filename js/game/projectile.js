@@ -4,7 +4,7 @@ import RigidBody from "./rigidbody.js";
 
 export default class Projectile extends Component {
     constructor(size, x, y, maxX, maxY) {
-        super(size, size, "red", x, y);
+        super(size, size, x, y);
 
         this.sprite = new Rectangle(size, size, "red", x, y);
 

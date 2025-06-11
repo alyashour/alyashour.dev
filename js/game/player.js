@@ -5,16 +5,15 @@ import Projectile from "./projectile.js";
 import {
     DEFAULT_PROJECTILE_SIZE,
     DEFAULT_PROJECTILE_SPEED
-} from "./config.js";
+} from "./defaults.js";
 
 export default class Player extends Component {
     constructor(width, height, acceleration, rotationSpeed, maxX, maxY, x = 0, y = 0) {
-        super(width, height, "", x, y);
+        super(width, height, x, y);
 
         // set up rigidBody
         this.rigidBody = new RigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
         this.rigidBody.onBorderCollision = () => {
-            console.log('border collision');
             this.rigidBody.vx = 0;
             this.rigidBody.vy = 0;
         }
@@ -71,12 +70,16 @@ export default class Player extends Component {
     }
 
     #shoot() {
-        console.log('shoot!');
+        // determine projectile position
+        const centerx = this.x + this.width / 2;
+        const centery = this.y + this.height / 2;
+        const projectilex = centerx;
+        const projectiley = centery;
 
         // create the projectile
         const projectile = new Projectile(
             DEFAULT_PROJECTILE_SIZE,
-            this.x, this.y,
+            projectilex, projectiley,
             this.maxX, this.maxY
         );
 
