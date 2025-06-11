@@ -1,5 +1,6 @@
 import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./gameArea.js";
 import Rectangle from "./rectangle.js";
+import Player from "./player.js";
 
 console.log("Loading asteroids game...");
 
@@ -17,7 +18,7 @@ function init() {
 
         setGlobalGameArea(gameArea);
     } catch (err) {
-        const text = `Failed to initialize asteroids game, ${err.message}`
+        const text = `Failed to initialize asteroids game:\n ${err.message}`
         if (FAIL_FAST) {
             err.message = text;
             throw err;
@@ -36,7 +37,7 @@ function createScene(gameArea) {
     gameArea.addToScene(background);
 
     // add the player
-    const player = new Player(30, 30, 0.2, 0.1);
+    const player = new Player(30, 30, 0.2, 0.1, gameArea.canvas.width, gameArea.canvas.height);
     gameArea.addToScene(player);
 }
 
@@ -61,11 +62,9 @@ function main() {
     }
 }
 
-// Has to be called using a listener because of dependency
-// This has to wait for the partial includes to run
+// Main has to be called using a listener because of dependency
+// Must wait for the partial includes to run
 import includeHTML from "../includes.js";
-import { round } from "./util.js";
-import Player from "./player.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     await includeHTML();

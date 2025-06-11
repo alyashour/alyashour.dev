@@ -48,7 +48,6 @@ export class GameArea {
         this.fps = fps
         this.context = this.canvas.getContext('2d');
         this.components = [];
-        this.rigidBodies = [];
         this.interval = null;
 
         this.keys = []; // key presses
@@ -116,7 +115,10 @@ export class GameArea {
         this.components.push(component);
     }
 
-    addToPhysics(rigidBody) {
-        this.components.push(rigidBody);
+    removeFromScene(component) {
+        const index = this.components.indexOf(component);
+        if (index !== -1) {
+            this.components.splice(index, 1);
+        }
     }
 }

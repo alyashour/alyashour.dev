@@ -1,12 +1,24 @@
 import Component from "./component.js";
 import Sprite from "./sprite.js";
-import Rectangle from "./rectangle.js";
 import RigidBody from "./rigidbody.js";
+import Projectile from "./projectile.js";
+import {
+    DEFAULT_PROJECTILE_SIZE,
+    DEFAULT_PROJECTILE_SPEED
+} from "./config.js";
 
 export default class Player extends Component {
-    constructor(width, height, acceleration, rotationSpeed, x=0, y=0) {
+    constructor(width, height, acceleration, rotationSpeed, maxX, maxY, x = 0, y = 0) {
         super(width, height, "", x, y);
-        this.rigidBody = new RigidBody(x, y, width, height, acceleration, 0.999);
+
+        // set up rigidBody
+        this.rigidBody = new RigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
+        this.rigidBody.onBorderCollision = () => {
+            console.log('border collision');
+            this.rigidBody.vx = 0;
+            this.rigidBody.vy = 0;
+        }
+
         this.rotationSpeed = rotationSpeed;
         this.sprite = new Sprite(width, height, x, y, "/img/asteroids_player_white.svg");
     }
@@ -31,7 +43,7 @@ export default class Player extends Component {
     }
 
     update() {
-        const keys = this.gameArea.keys;
+        let keys = this.gameArea.keys;
 
         // Get movement inputs and apply them
         if (keys['ArrowUp']) {
@@ -46,8 +58,9 @@ export default class Player extends Component {
         if (keys['ArrowRight']) this.angle += this.rotationSpeed;
 
         // shoot when the spacebar is pressed
-        if (keys['Spacebar']) {
-            alert('shoot!')
+        if (keys[' ']) {
+            this.gameArea.keys[' '] = false; // de-bounce (consume) the event
+            this.#shoot();
         }
 
         this.rigidBody.update();
@@ -55,5 +68,23 @@ export default class Player extends Component {
 
     draw() {
         this.sprite.draw();
+    }
+
+    #shoot() {
+        console.log('shoot!');
+
+        // create the projectile
+        const projectile = new Projectile(
+            DEFAULT_PROJECTILE_SIZE,
+            this.x, this.y,
+            this.maxX, this.maxY
+        );
+
+        // set the projectiles velocity
+        projectile.rigidBody.vx = DEFAULT_PROJECTILE_SPEED * Math.cos(this.angle - Math.PI / 2);
+        projectile.rigidBody.vy = DEFAULT_PROJECTILE_SPEED * Math.sin(this.angle - Math.PI / 2);
+
+        // add it to scene and physics
+        this.gameArea.addToScene(projectile);
     }
 }
