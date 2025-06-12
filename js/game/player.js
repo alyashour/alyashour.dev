@@ -4,7 +4,9 @@ import Projectile from "./projectile.js";
 import {
     DEFAULT_SHOOT_SPEED,
     PLAYER_ACCELERATION,
-    PLAYER_ROTATION_SPEED
+    PLAYER_ROTATION_SPEED,
+    PLAYER_START_HEALTH,
+    V_DAMPING_RATE
 } from "./defaults.js";
 import WrapRigidBody from "./engine/wraprigidbody.js";
 
@@ -12,6 +14,7 @@ export default class Player extends Component {
     constructor(width, height, maxX, maxY) {
         super(width, height, 0, 0);
         this.rotationSpeed = PLAYER_ROTATION_SPEED;
+        this.health = PLAYER_START_HEALTH;
         
         // set up rigidBody
         // compute center of area for starting position
@@ -22,8 +25,14 @@ export default class Player extends Component {
             width, height, 
             PLAYER_ACCELERATION, 
             maxX, maxY, 
-            0.997
+            V_DAMPING_RATE
         );
+        this.rigidBody.onCollision = (other) => {
+            if (other.constructor?.name === 'Asteroid') {
+                alert('you died!');
+                this.deleteSelf();
+            }
+        };
 
         // set up sprite
         this.sprite = new Sprite(width, height, 0, 0, "/img/asteroids_player_white.svg");

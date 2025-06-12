@@ -1,10 +1,7 @@
+import includeHTML from "../includes.js";
 import Player from "./player.js";
 import Rectangle from "./engine/rectangle.js";
-import { randomFloat, randomInt } from "./engine/util.js";
-import { 
-    ASTEROID_MAX_SIZE, ASTEROID_MIN_SIZE,
-    ASTEROID_MAX_START_SPEED, ASTEROID_MIN_START_SPEED 
-} from "./defaults.js";
+import { createRandomAsteroid } from "./util.js";
 import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./engine/gameArea.js";
 
 const FAIL_FAST = true; // should the system fail fast or continue on problem?
@@ -47,17 +44,7 @@ function createScene(gameArea) {
 
     // add 5 asteroids
     for (let i = 0; i < 5; i++) {
-        const asteroid = new Asteroid(
-            randomInt(ASTEROID_MIN_SIZE, ASTEROID_MAX_SIZE + 1), 
-            randomInt(0, canvas.width), randomInt(0, canvas.height), 
-            canvas.width, canvas.height
-        );
-
-        // give random velocity
-        const speed = randomFloat(ASTEROID_MIN_START_SPEED, ASTEROID_MAX_START_SPEED);
-        const dir = randomFloat(0, 2 * Math.PI); // in radians
-        asteroid.rigidBody.vx = speed * Math.cos(dir);
-        asteroid.rigidBody.vy = speed * Math.sin(dir);
+        const asteroid = createRandomAsteroid(canvas);
 
         gameArea.addToScene(asteroid);
     }
@@ -86,8 +73,6 @@ function main() {
 
 // Main has to be called using a listener because of dependency
 // Must wait for the partial includes to run
-import includeHTML from "../includes.js";
-import Asteroid from "./asteroid.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     await includeHTML();

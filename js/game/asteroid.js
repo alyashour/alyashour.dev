@@ -1,7 +1,9 @@
 import Sprite from "./engine/sprite.js";
 import Component from "./engine/component.js";
-import { getRandomElement } from "./engine/util.js";
+import { getRandomElement, randomInt } from "./engine/util.js";
 import WrapRigidBody from "./engine/wraprigidbody.js";
+import { ASTEROID_MIN_SIZE } from "./defaults.js";
+import { createRandomAsteroid } from "./util.js";
 
 const VARIANTS = [
     {
@@ -41,7 +43,10 @@ export default class Asteroid extends Component {
         // set rigidbody
         this.rigidBody = new WrapRigidBody(x, y, size, size, 0, maxX, maxY);
         this.rigidBody.onCollision = (other) => {
-            if (other.constructor.name === 'Projectile') this.deleteSelf();
+            if (other.constructor.name === 'Projectile') {
+                this.splitUp();
+                this.deleteSelf();
+            }
         };
     }
 
@@ -62,6 +67,30 @@ export default class Asteroid extends Component {
 
     set y(val) {
         if (this.rigidBody) this.rigidBody.y = val;
+    }
+
+    /**
+     * Called on being struck by a projectile.
+     * The asteroid splits up into a number of smaller asteroids.
+     * 
+     * The size of the smaller ones is always the minimum 
+     */
+    splitUp() {
+        console.log(`parent size: ${this.size}`);
+
+        if (this.size <= ASTEROID_MIN_SIZE * 2) return; // dont do anything if small
+
+        // otherwise spawn some number of asteroids
+        const numOfChildren = randomInt(1, this.size / ASTEROID_MIN_SIZE);
+        console.log(`Spawning ${numOfChildren} smaller asteroids`);
+
+        for (let i = 0; i < numOfChildren; i++) {
+            if (!this.canvas) throw new Error("Canvas is null!");
+
+            // create new asteroid
+            const newAstr = createRandomAsteroid(this.canvas, ASTEROID_MIN_SIZE);
+            this.gameArea.addToScene(newAstr);
+        }
     }
 
     update() {
