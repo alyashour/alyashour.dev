@@ -141,4 +141,10 @@ export class GameArea {
             this.components.splice(index, 1);
         }
     }
+
+    gameOver() {
+        this.onGameOver();
+    }
+
+    onGameOver() {}
 }

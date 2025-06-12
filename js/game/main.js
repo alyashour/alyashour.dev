@@ -55,7 +55,15 @@ function main() {
         return;
     }
 
+    // get global game area
     const gameArea = getGlobalGameArea();
+
+    // set game over behaviour
+    gameArea.onGameOver = () => {
+        gameArea.components = [];
+        createScene(gameArea);
+    };
+
     gameArea.start();  // starts the update loop at the target FPS
 
     try {

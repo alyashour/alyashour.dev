@@ -85,10 +85,10 @@ export default class Asteroid extends Component {
         console.log(`Spawning ${numOfChildren} smaller asteroids`);
 
         for (let i = 0; i < numOfChildren; i++) {
-            if (!this.canvas) throw new Error("Canvas is null!");
+            if (!this.gameArea.canvas) throw new Error("Canvas is null!");
 
             // create new asteroid
-            const newAstr = createRandomAsteroid(this.canvas, ASTEROID_MIN_SIZE);
+            const newAstr = createRandomAsteroid(this.gameArea.canvas, ASTEROID_MIN_SIZE, this.x, this.y);
             this.gameArea.addToScene(newAstr);
         }
     }

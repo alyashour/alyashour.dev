@@ -1,6 +1,6 @@
 // Asteroids
-export const ASTEROID_MIN_SIZE = 50;
-export const ASTEROID_MAX_SIZE = 180;
+export const ASTEROID_MIN_SIZE = 80;
+export const ASTEROID_MAX_SIZE = 200;
 export const ASTEROID_MIN_START_SPEED = 2;
 export const ASTEROID_MAX_START_SPEED = 7;
 

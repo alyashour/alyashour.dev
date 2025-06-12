@@ -14,16 +14,16 @@ import {
  * @param {number?} size 
  * @returns the asteroid
  */
-export function createRandomAsteroid(canvas, size=null) {
-    // set size if not provided
-    if (!size) {
-        size = randomInt(ASTEROID_MIN_SIZE, ASTEROID_MAX_SIZE + 1)
-    }
+export function createRandomAsteroid(canvas, size=null, x=null, y=null) {
+    // set vars if not provided
+    size = size || randomInt(ASTEROID_MIN_SIZE, ASTEROID_MAX_SIZE + 1);
+    x = x || randomInt(0, canvas.width);
+    y = y || randomInt(0, canvas.height);
 
     // create asteroid
     const asteroid = new Asteroid(
         size,
-        randomInt(0, canvas.width), randomInt(0, canvas.height),
+        x, y,
         canvas.width, canvas.height
     );
 
