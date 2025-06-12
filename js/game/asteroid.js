@@ -2,6 +2,7 @@ import Component from "./component.js";
 import RigidBody from "./rigidbody.js";
 import Sprite from "./sprite.js";
 import { getRandomElement } from "./util.js";
+import WrapRigidBody from "./wraprigidbody.js";
 
 const VARIANTS = [
     {
@@ -39,9 +40,10 @@ export default class Asteroid extends Component {
         this.sprite = new Sprite(size, size, x, y, this.variant.imagePath);
         
         // set rigidbody
-        this.rigidBody = new RigidBody(x, y, size, size, 0, maxX, maxY);
+        this.rigidBody = new WrapRigidBody(x, y, size, size, 0, maxX, maxY);
         this.rigidBody.onCollision = (other) => {
-            console.log(typeof other);
+            console.log(other.constructor.name);
+            if (other.constructor.name === 'Projectile') this.deleteSelf();
         };
     }
 

@@ -20,4 +20,8 @@ export default class Component {
 
     update() {}
     draw() {}
+
+    deleteSelf() {
+        this.gameArea.removeFromScene(this);
+    }
 }

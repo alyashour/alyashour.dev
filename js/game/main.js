@@ -2,8 +2,6 @@ import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./gameArea.js";
 import Rectangle from "./rectangle.js";
 import Player from "./player.js";
 
-console.log("Loading asteroids game...");
-
 const FAIL_FAST = true; // should the system fail fast or continue on problem?
 const FRAME_RATE = 60; // default: 60fps
 
@@ -41,7 +39,7 @@ function createScene(gameArea) {
     gameArea.addToScene(player);
 
     // add an asteroid
-    const asteroid = new Asteroid(70, 30, 30, gameArea.canvas.width, gameArea.canvas.height);
+    const asteroid = new Asteroid(70, 100, 100, gameArea.canvas.width, gameArea.canvas.height);
     gameArea.addToScene(asteroid);
 }
 

@@ -1,22 +1,19 @@
 import Sprite from "./sprite.js";
 import Component from "./component.js";
-import RigidBody from "./rigidbody.js";
 import Projectile from "./projectile.js";
 import {
     DEFAULT_PROJECTILE_SIZE,
     DEFAULT_PROJECTILE_SPEED
 } from "./defaults.js";
+import WrapRigidBody from "./wraprigidbody.js";
 
 export default class Player extends Component {
     constructor(width, height, acceleration, rotationSpeed, maxX, maxY, x = 0, y = 0) {
         super(width, height, x, y);
+        this.health = 100;
 
         // set up rigidBody
-        this.rigidBody = new RigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
-        this.rigidBody.onBorderCollision = () => {
-            this.rigidBody.vx = 0;
-            this.rigidBody.vy = 0;
-        }
+        this.rigidBody = new WrapRigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
 
         this.rotationSpeed = rotationSpeed;
         this.sprite = new Sprite(width, height, x, y, "/img/asteroids_player_white.svg");
@@ -73,14 +70,16 @@ export default class Player extends Component {
         // determine projectile position
         const centerx = this.x + this.width / 2;
         const centery = this.y + this.height / 2;
-        const projectilex = centerx;
-        const projectiley = centery;
-
+        const offsetx = this.height / 2 * Math.cos(this.angle - Math.PI / 2)
+        const offsety = this.height / 2 * Math.sin(this.angle - Math.PI / 2)
+        const projectilex = centerx + offsetx;
+        const projectiley = centery + offsety;
+        
         // create the projectile
         const projectile = new Projectile(
             DEFAULT_PROJECTILE_SIZE,
             projectilex, projectiley,
-            this.maxX, this.maxY
+            this.rigidBody.maxX, this.rigidBody.maxY
         );
 
         // set the projectiles velocity

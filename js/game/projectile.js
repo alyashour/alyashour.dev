@@ -1,18 +1,26 @@
 import Rectangle from "./rectangle.js";
 import Component from "./component.js";
-import RigidBody from "./rigidbody.js";
+import WrapRigidBody from "./wraprigidbody.js";
+import { DEFAULT_PROJECTILE_LIFETIME } from "./defaults.js";
 
 export default class Projectile extends Component {
     constructor(size, x, y, maxX, maxY) {
         super(size, size, x, y);
 
-        this.sprite = new Rectangle(size, size, "red", x, y);
+        this.sprite = new Rectangle(size, size, "white", x, y);
 
-        this.rigidBody = new RigidBody(x, y, size, size, 0, maxX, maxY);
-        this.rigidBody.onBorderCollision = () => {
-            this.gameArea.removeFromScene(this);
-            delete this;
-        }
+        this.rigidBody = new WrapRigidBody(x, y, size, size, 0, maxX, maxY);
+        this.rigidBody.onCollision = (other) => {
+            if (other.constructor?.name === 'Asteroid') {
+                clearTimeout(this.lifetimeTimeout);
+                this.deleteSelf();
+            }
+        };
+
+        // set timout
+        this.lifetimeTimeout = setTimeout(() => {
+            this.deleteSelf();
+        }, DEFAULT_PROJECTILE_LIFETIME);
     }
 
     // TEMPORARILY COVER THE INHERITED VALUES
