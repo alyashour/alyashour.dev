@@ -94,7 +94,6 @@ export class GameArea {
                 // and in a case like this where there are few components, it works.
                 if (a.rigidBody && b.rigidBody) {
                     if (a.rigidBody.intersectsWith(b)) {
-                        console.log(`Collision: ${a} - ${b}`);
                         if (typeof a.rigidBody.onCollision === "function") a.rigidBody.onCollision(b);
                         if (typeof b.rigidBody.onCollision === "function") b.rigidBody.onCollision(a);
                     }

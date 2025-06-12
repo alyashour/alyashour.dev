@@ -1,21 +1,32 @@
-import Sprite from "./sprite.js";
-import Component from "./component.js";
+import Sprite from "./engine/sprite.js";
+import Component from "./engine/component.js";
 import Projectile from "./projectile.js";
 import {
-    DEFAULT_PROJECTILE_SIZE,
-    DEFAULT_PROJECTILE_SPEED
+    DEFAULT_SHOOT_SPEED,
+    PLAYER_ACCELERATION,
+    PLAYER_ROTATION_SPEED
 } from "./defaults.js";
-import WrapRigidBody from "./wraprigidbody.js";
+import WrapRigidBody from "./engine/wraprigidbody.js";
 
 export default class Player extends Component {
-    constructor(width, height, acceleration, rotationSpeed, maxX, maxY, x = 0, y = 0) {
-        super(width, height, x, y);
-
+    constructor(width, height, maxX, maxY) {
+        super(width, height, 0, 0);
+        this.rotationSpeed = PLAYER_ROTATION_SPEED;
+        
         // set up rigidBody
-        this.rigidBody = new WrapRigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
+        // compute center of area for starting position
+        const x = this.gameArea.canvas.width / 2 - this.width / 2;
+        const y = this.gameArea.canvas.height / 2 - this.height / 2;
+        this.rigidBody = new WrapRigidBody(
+            x, y, 
+            width, height, 
+            PLAYER_ACCELERATION, 
+            maxX, maxY, 
+            0.997
+        );
 
-        this.rotationSpeed = rotationSpeed;
-        this.sprite = new Sprite(width, height, x, y, "/img/asteroids_player_white.svg");
+        // set up sprite
+        this.sprite = new Sprite(width, height, 0, 0, "/img/asteroids_player_white.svg");
     }
 
     // TEMPORARILY COVER THE INHERITED VALUES
@@ -75,15 +86,14 @@ export default class Player extends Component {
         const projectiley = centery + offsety;
         
         // create the projectile
-        const projectile = new Projectile(
-            DEFAULT_PROJECTILE_SIZE,
+        const projectile = new Projectile(            
             projectilex, projectiley,
             this.rigidBody.maxX, this.rigidBody.maxY
         );
 
         // set the projectiles velocity
-        projectile.rigidBody.vx = DEFAULT_PROJECTILE_SPEED * Math.cos(this.angle - Math.PI / 2);
-        projectile.rigidBody.vy = DEFAULT_PROJECTILE_SPEED * Math.sin(this.angle - Math.PI / 2);
+        projectile.rigidBody.vx = DEFAULT_SHOOT_SPEED * Math.cos(this.angle - Math.PI / 2);
+        projectile.rigidBody.vy = DEFAULT_SHOOT_SPEED * Math.sin(this.angle - Math.PI / 2);
 
         // add it to scene and physics
         this.gameArea.addToScene(projectile);

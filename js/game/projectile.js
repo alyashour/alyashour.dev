@@ -1,15 +1,18 @@
-import Rectangle from "./rectangle.js";
-import Component from "./component.js";
-import WrapRigidBody from "./wraprigidbody.js";
-import { DEFAULT_PROJECTILE_LIFETIME } from "./defaults.js";
+import Rectangle from "./engine/rectangle.js";
+import Component from "./engine/component.js";
+import WrapRigidBody from "./engine/wraprigidbody.js";
+import { 
+    DEFAULT_PROJECTILE_LIFETIME,
+    DEFAULT_PROJECTILE_SIZE
+} from "./defaults.js";
 
 export default class Projectile extends Component {
-    constructor(size, x, y, maxX, maxY) {
-        super(size, size, x, y);
+    constructor(x, y, maxX, maxY) {
+        super(DEFAULT_PROJECTILE_SIZE, DEFAULT_PROJECTILE_SIZE, x, y);
 
-        this.sprite = new Rectangle(size, size, "white", x, y);
+        this.sprite = new Rectangle(DEFAULT_PROJECTILE_SIZE, DEFAULT_PROJECTILE_SIZE, "white", x, y);
 
-        this.rigidBody = new WrapRigidBody(x, y, size, size, 0, maxX, maxY);
+        this.rigidBody = new WrapRigidBody(x, y, DEFAULT_PROJECTILE_SIZE, DEFAULT_PROJECTILE_SIZE, 0, maxX, maxY);
         this.rigidBody.onCollision = (other) => {
             if (other.constructor?.name === 'Asteroid') {
                 clearTimeout(this.lifetimeTimeout);

@@ -39,13 +39,6 @@ aside table a {
     text-decoration: underline;
 }
 
-canvas {
-    border: 2px solid black;
-    width: 100%;
-    aspect-ratio: 6 / 1; /* THIS IS ARBITRARY! */
-    margin: 5px;
-}
-
 /*
  * TRANSFORMS
  */
@@ -139,15 +132,6 @@ a:hover {
 .info-aside {
     flex: 1;
     margin: 15px;
-}
-
-/* 
- * GAME
- */
-#dino-game {
-    height: 80px;
-    width: 100%;
-    background-color: gray;
 }
 
 /*

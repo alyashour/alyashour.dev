@@ -1,4 +1,4 @@
-import { rectsIntersect, circlesIntersect } from "./util.js";
+import { rectsIntersect } from "./util.js";
 
 /**
  * Any object in the game that can collide with things and move around
@@ -51,7 +51,6 @@ export default class RigidBody {
      * Called once per update, applies border behaviour (collision)
      */
     handleBorderBehaviour() {
-        console.log('test');
         if (this.detectBorderCollision()) this.handleBorderCollision();
     }
 

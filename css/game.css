@@ -1,0 +1,9 @@
+/* 
+ * GAME
+ */
+canvas {
+    border: 2px solid black;
+    width: 100%;
+    aspect-ratio: 4 / 1; /* THIS IS ARBITRARY! */
+    margin: 5px;
+}

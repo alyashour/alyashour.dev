@@ -1,8 +1,7 @@
-import Component from "./component.js";
-import RigidBody from "./rigidbody.js";
-import Sprite from "./sprite.js";
-import { getRandomElement } from "./util.js";
-import WrapRigidBody from "./wraprigidbody.js";
+import Sprite from "./engine/sprite.js";
+import Component from "./engine/component.js";
+import { getRandomElement } from "./engine/util.js";
+import WrapRigidBody from "./engine/wraprigidbody.js";
 
 const VARIANTS = [
     {
@@ -42,7 +41,6 @@ export default class Asteroid extends Component {
         // set rigidbody
         this.rigidBody = new WrapRigidBody(x, y, size, size, 0, maxX, maxY);
         this.rigidBody.onCollision = (other) => {
-            console.log(other.constructor.name);
             if (other.constructor.name === 'Projectile') this.deleteSelf();
         };
     }

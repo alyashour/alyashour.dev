@@ -1,11 +1,11 @@
 import Player from "./player.js";
-import Rectangle from "./rectangle.js";
-import { randomFloat, randomInt } from "./util.js";
+import Rectangle from "./engine/rectangle.js";
+import { randomFloat, randomInt } from "./engine/util.js";
 import { 
     ASTEROID_MAX_SIZE, ASTEROID_MIN_SIZE,
     ASTEROID_MAX_START_SPEED, ASTEROID_MIN_START_SPEED 
 } from "./defaults.js";
-import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./gameArea.js";
+import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./engine/gameArea.js";
 
 const FAIL_FAST = true; // should the system fail fast or continue on problem?
 const FRAME_RATE = 60; // default: 60fps
@@ -16,7 +16,7 @@ function init() {
         let gameArea = new GameArea(
             document.getElementById('game-container'),
             document.getElementById('game-canvas'),
-            FRAME_RATE,  6 / 1
+            FRAME_RATE,  4 / 1
         );
 
         setGlobalGameArea(gameArea);
@@ -42,7 +42,7 @@ function createScene(gameArea) {
     gameArea.addToScene(background);
 
     // add the player
-    const player = new Player(80, 80, 0.2, 0.1, canvas.width, canvas.height);
+    const player = new Player(80, 80, canvas.width, canvas.height);
     gameArea.addToScene(player);
 
     // add 5 asteroids
@@ -58,7 +58,7 @@ function createScene(gameArea) {
         const dir = randomFloat(0, 2 * Math.PI); // in radians
         asteroid.rigidBody.vx = speed * Math.cos(dir);
         asteroid.rigidBody.vy = speed * Math.sin(dir);
-        
+
         gameArea.addToScene(asteroid);
     }
 }
