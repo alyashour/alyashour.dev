@@ -1,2 +1,2 @@
-export const DEFAULT_PROJECTILE_SIZE = 5;
+export const DEFAULT_PROJECTILE_SIZE = 15;
 export const DEFAULT_PROJECTILE_SPEED = 5;

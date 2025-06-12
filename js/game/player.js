@@ -1,5 +1,5 @@
-import Component from "./component.js";
 import Sprite from "./sprite.js";
+import Component from "./component.js";
 import RigidBody from "./rigidbody.js";
 import Projectile from "./projectile.js";
 import {

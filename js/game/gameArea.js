@@ -81,6 +81,27 @@ export class GameArea {
             component.update();
         }
 
+        // Complete physics update (collisions)
+        for (let i = 0; i < this.components.length; i++) {
+            for (let j = i + 1; j < this.components.length; j++) {
+                const a = this.components[i];
+                const b = this.components[j];
+
+                // NOT a good check since this requires that rigidBodies be all named the same thing
+                // This is not necessarily true and not a good system.
+                // Consider class inheritance instead or something like that.
+                // BUT this system is very simple
+                // and in a case like this where there are few components, it works.
+                if (a.rigidBody && b.rigidBody) {
+                    if (a.rigidBody.intersectsWith(b)) {
+                        console.log(`Collision: ${a} - ${b}`);
+                        if (typeof a.rigidBody.onCollision === "function") a.rigidBody.onCollision(b);
+                        if (typeof b.rigidBody.onCollision === "function") b.rigidBody.onCollision(a);
+                    }
+                }
+            }
+        }
+
         // Allow components to draw
         for (let component of this.components) {
             this.context.save();

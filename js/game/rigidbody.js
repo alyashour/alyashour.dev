@@ -1,3 +1,5 @@
+import { rectsIntersect, circlesIntersect } from "./util.js";
+
 /**
  * Any object in the game that can collide with things and move around
  */
@@ -15,6 +17,10 @@ export default class RigidBody {
 
         this.maxX = maxX;
         this.maxY = maxY;
+    }
+
+    intersectsWith(other) {
+        return rectsIntersect(this.x, this.y, this.width, this.height, other.x, other.y, other.width, other.height);
     }
 
     /**

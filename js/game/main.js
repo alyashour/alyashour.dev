@@ -37,8 +37,12 @@ function createScene(gameArea) {
     gameArea.addToScene(background);
 
     // add the player
-    const player = new Player(30, 30, 0.2, 0.1, gameArea.canvas.width, gameArea.canvas.height);
+    const player = new Player(80, 80, 0.2, 0.1, gameArea.canvas.width, gameArea.canvas.height);
     gameArea.addToScene(player);
+
+    // add an asteroid
+    const asteroid = new Asteroid(70, 30, 30, gameArea.canvas.width, gameArea.canvas.height);
+    gameArea.addToScene(asteroid);
 }
 
 function main() {
@@ -65,6 +69,7 @@ function main() {
 // Main has to be called using a listener because of dependency
 // Must wait for the partial includes to run
 import includeHTML from "../includes.js";
+import Asteroid from "./asteroid.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     await includeHTML();
