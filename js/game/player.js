@@ -29,7 +29,6 @@ export default class Player extends Component {
         );
         this.rigidBody.onCollision = (other) => {
             if (other.constructor?.name === 'Asteroid') {
-                alert('you died!');
                 this.gameArea.gameOver();
             }
         };
