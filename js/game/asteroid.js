@@ -47,6 +47,25 @@ export default class Asteroid extends Component {
         };
     }
 
+    // TEMPORARILY COVER THE INHERITED VALUES
+    // TODO: THIS IS NOT GOOD AND SHOULD BE REMOVED
+    // I just haven't seperated rigidbodies and components cleanly yet, will do soon.
+    get x() {
+        return this.rigidBody?.x || 0;
+    }
+
+    set x(val) {
+        if (this.rigidBody) this.rigidBody.x = val;
+    }
+
+    get y() {
+        return this.rigidBody?.y || 0;
+    }
+
+    set y(val) {
+        if (this.rigidBody) this.rigidBody.y = val;
+    }
+
     update() {
         this.rigidBody.update();
     }

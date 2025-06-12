@@ -10,7 +10,6 @@ import WrapRigidBody from "./wraprigidbody.js";
 export default class Player extends Component {
     constructor(width, height, acceleration, rotationSpeed, maxX, maxY, x = 0, y = 0) {
         super(width, height, x, y);
-        this.health = 100;
 
         // set up rigidBody
         this.rigidBody = new WrapRigidBody(x, y, width, height, acceleration, maxX, maxY, 0.997);
