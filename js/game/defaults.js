@@ -11,7 +11,7 @@ export const PLAYER_ACCELERATION = 0.2;
 
 // Projectile
 export const DEFAULT_PROJECTILE_SIZE = 6;
-export const DEFAULT_PROJECTILE_LIFETIME = 3000; // ms
+export const DEFAULT_PROJECTILE_LIFETIME = 2000; // ms
 
 // etc.
-export const V_DAMPING_RATE = 0.997; // speed multiplier applied per update (60hz)
+export const V_DAMPING_RATE = 0.95; // speed multiplier applied per update (60hz)
