@@ -7,6 +7,8 @@ import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./engine/gameAre
 const FAIL_FAST = true; // should the system fail fast or continue on problem?
 const FRAME_RATE = 60; // default: 60fps
 
+console.log('Starting asteroids...');
+
 function init() {
     // Initialize game board
     try {

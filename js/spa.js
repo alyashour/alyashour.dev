@@ -1,43 +1,68 @@
 const navigateTo = url => {
-    history.pushState(null, null, url);
-    router();
+    location.hash = url;
 };
+
+const getCurrentPath = () => location.hash.slice(1) || "/";
 
 const router = async () => {
-    const routes = [
-        { path: "/", view: () => fetch("views/home.html").then(res => res.text()) },
-        { path: "/about", view: () => fetch("views/about.html").then(res => res.text()) },
-        { path: "/contact", view: () => fetch("views/contact.html").then(res => res.text()) },
-    ];
+    const routes = {
+        "/": "/views/home.html",
+        "/admin": "/views/admin.html",
+        "/startup": "/views/startup.html",
+        "/roadmap": "/views/roadmap.html",
+        "/projects": "/views/roadmap.html",
+    };
 
-    const potentialMatches = routes.map(route => ({
-        route,
-        isMatch: location.pathname === route.path
-    }));
+    const path = getCurrentPath();
+    const view = routes[path];
 
-    let match = potentialMatches.find(p => p.isMatch);
-
-    if (!match) {
-        match = {
-            route: { view: () => Promise.resolve("<h1>404 Not Found</h1>") }
-        };
+    if (!view) {
+        document.getElementById("app").innerHTML = "<h1>404 Not Found</h1>";
+        return;
     }
 
-    const html = await match.route.view();
-    document.getElementById("app").innerHTML = html;
+    await loadViewWithScripts(view);
 };
 
-// Listen for back/forward browser events
-window.addEventListener("popstate", router);
 
-// Delegate link clicks
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
-            navigateTo(e.target.href);
+            navigateTo(e.target.getAttribute("href"));
         }
     });
-
     router();
 });
+
+async function loadViewWithScripts(url) {
+  const html = await fetch(url).then(res => res.text());
+  
+  const container = document.getElementById("app");
+  container.innerHTML = html;
+
+  // Find any scripts in the loaded HTML
+  const scripts = container.querySelectorAll("script");
+
+  scripts.forEach(oldScript => {
+    const newScript = document.createElement("script");
+
+    // Copy attributes like src, type, defer, etc.
+    Array.from(oldScript.attributes).forEach(attr => {
+      newScript.setAttribute(attr.name, attr.value);
+    });
+
+    if (oldScript.src) {
+      // External script — just append to body to load & run
+      document.body.appendChild(newScript);
+    } else {
+      // Inline script — copy the text and execute
+      newScript.textContent = oldScript.textContent;
+      document.body.appendChild(newScript);
+    }
+
+    // Remove old script from container so it's not duplicated
+    oldScript.remove();
+  });
+}
