@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="/css/game.css">
     <link rel="stylesheet" href="/css/footer.css">
 
-    <!-- This loads partials into the doc. -->
-    <script defer type="module" src="/js/includes.js"></script>
+    <!-- For scroll restoration -->
+     <script defer src="/js/scroll-restoration.js"></script>
     <!-- SPA script -->
-    <script defer src="/js/spa.js"></script>
-    <!-- This loads the game -->
-    <script defer type="module" src="/js/game/main.js"></script>
+    <script defer src="/js/router.js"></script>
+    <!-- This loads partials into the doc. Has to run after router -->
+    <script defer type="module" src="/js/saturate.js"></script>
 </head>
 
 <body>
     <!-- Header -->
     <header partial="/partials/header.html"></header>
 
-    <main id="app"></main>
+    <main id="content"></main>
 
     <!-- Footer -->
     <footer partial="/partials/footer.html"></footer>

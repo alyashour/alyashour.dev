@@ -1,4 +1,3 @@
-import includeHTML from "../includes.js";
 import Player from "./player.js";
 import Rectangle from "./engine/rectangle.js";
 import { createRandomAsteroid } from "./util.js";
@@ -7,7 +6,7 @@ import { GameArea, getGlobalGameArea, setGlobalGameArea } from "./engine/gameAre
 const FAIL_FAST = true; // should the system fail fast or continue on problem?
 const FRAME_RATE = 60; // default: 60fps
 
-console.log('Starting asteroids...');
+console.log('Loading game script.');
 
 function init() {
     // Initialize game board
@@ -81,10 +80,6 @@ function main() {
     }
 }
 
-// Main has to be called using a listener because of dependency
-// Must wait for the partial includes to run
-
-document.addEventListener('DOMContentLoaded', async () => {
-    await includeHTML();
-    main();
-})
+// Start loading game
+console.log('Running game script');
+main();

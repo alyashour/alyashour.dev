@@ -76,14 +76,11 @@ export default class Asteroid extends Component {
      * The size of the smaller ones is always the minimum 
      */
     splitUp() {
-        console.log(`parent size: ${this.size}`);
-
         if (this.size <= ASTEROID_MIN_SIZE * 2) return; // dont do anything if small
 
         // otherwise spawn some number of asteroids
         const numOfChildren = randomInt(1, this.size / ASTEROID_MIN_SIZE);
-        console.log(`Spawning ${numOfChildren} smaller asteroids`);
-
+        
         for (let i = 0; i < numOfChildren; i++) {
             if (!this.gameArea.canvas) throw new Error("Canvas is null!");
 
