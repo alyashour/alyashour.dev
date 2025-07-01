@@ -1,3 +1,28 @@
+header {
+    display: flex;
+    gap: 5px;
+    border-bottom: 2px solid black;
+}
+
 .header-info p {
     font-size: small;
+}
+
+.header-title {
+    flex: 1;
+}
+
+.header-info {
+    flex: 0 0 auto;
+    /* Don't grow, don't shrink, auto size */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 5px;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.header-info a {
+    padding-left: 1em;
 }

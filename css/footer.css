@@ -1,6 +1,7 @@
 footer {
     display: flex;
     padding: 5px;
+    border-top: 2px solid black;
 }
 
 .left-footer {

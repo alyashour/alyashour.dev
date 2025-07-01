@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/game.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/roadmap.css">
+    <link rel="stylesheet" href="/css/tables.css">
 
     <!-- For scroll restoration -->
-     <script defer src="/js/scroll-restoration.js"></script>
+    <script defer src="/js/scroll-restoration.js"></script>
     <!-- SPA script -->
     <script defer src="/js/router.js"></script>
     <!-- This loads partials into the doc. Has to run after router -->
@@ -19,13 +21,15 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header partial="/partials/header.html"></header>
+    <div id="wrapper">
+        <!-- Header -->
+        <header partial="/partials/header.html"></header>
 
-    <main id="content"></main>
+        <main id="content"></main>
 
-    <!-- Footer -->
-    <footer partial="/partials/footer.html"></footer>
+        <!-- Footer -->
+        <footer partial="/partials/footer.html"></footer>
+    </div>
 </body>
 
 </html>

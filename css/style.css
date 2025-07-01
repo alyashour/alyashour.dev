@@ -3,50 +3,30 @@
     margin: 0px;
 }
 
+html {
+    height: 100%;
+}
+
 /* 
  * LAYOUT
  */
-
-header {
-    display: flex;
-    gap: 5px;
-    border-bottom: 2px solid black;
-}
-
-footer {
-    border-top: 2px solid black;
-}
-
 body {
-    width: 90%;
-    margin: 40px auto;
-    border-left: 2px solid black;
-    padding-left: 10px;
-}
-
-aside table {
     width: 100%;
-    table-layout: fixed;
-    border: 2px solid black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-aside table th {
-    text-align: left;
-    background-color: lightgray;
+#content {
+    flex-grow: 1;
 }
 
-aside th,
-aside td {
-    white-space: nowrap;
-    overflow-x: auto;
-    text-overflow: ellipsis;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-aside table a {
-    color: black;
-    text-decoration: underline;
+#wrapper {
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 0 2%;
 }
 
 /*
@@ -122,26 +102,6 @@ a:hover {
 /*
  * CLASSES
  */
-
-.header-title {
-    flex: 1;
-}
-
-.header-info {
-    flex: 0 0 auto;
-    /* Don't grow, don't shrink, auto size */
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin-bottom: 5px;
-    justify-content: flex-end;
-    padding: 5px;
-}
-
-.header-info a {
-    padding-left: 1em;
-}
-
 .main-layout {
     display: flex;
     width: 100%;
@@ -162,20 +122,21 @@ a:hover {
     overflow-x: hidden;
 }
 
-#gamediv {
-    margin-top: 30px;
-}
-
 /*
  * QUERIES
  */
-@media (min-width: 1000px) {
-    body {
+
+/* If we are wide enough */
+@media (min-width: 1200px) {
+    #wrapper {
         width: 80%;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
     }
 }
 
-@media (max-width: 800px) { /* On narrow screens */
+@media (max-width: 900px) {
+    /* On narrow screens */
     /* make the aside section stack on top instead of go on right */
     .main-layout {
         flex-direction: column;
