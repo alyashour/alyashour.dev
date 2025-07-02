@@ -1,0 +1,46 @@
+{
+    "versions": [
+        {
+            "version": "v0.1.0",
+            "title": "Initial launch!",
+            "completed": true,
+            "date": "19/06/25"
+        },
+        {
+            "version": "v0.2.0",
+            "title": "Roadmap added (hardcoded)",
+            "completed": true,
+            "date": "31/06/25"
+        },
+        {
+            "version": "v0.2.1",
+            "title": "CMS (gui + json)",
+            "completed": false,
+            "date": "Planned"
+        },
+        {
+            "version": "v0.3.0",
+            "title": "Update sub-page index",
+            "completed": false,
+            "date": "Planned"
+        },
+        {
+            "version": "v0.3.1",
+            "title": "Add documents (resumé, guides, \"how-to's\"",
+            "completed": false,
+            "date": "Planned"
+        }
+    ],
+    "features": [
+        {
+            "title": "Framework move",
+            "description": "The current CSS/navigation system isn't as clean as I'd like it to be. I'm considering moving to a framework with better support or should I find another way.",
+            "release": "Unplanned"
+        },
+        {
+            "title": "Margin/padding in td",
+            "description": "Need to move text inwards so it's not touching the border in tables",
+            "release": "Unplanned"
+        }
+    ]
+}
