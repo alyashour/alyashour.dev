@@ -1,6 +1,7 @@
 footer {
     display: flex;
-    padding: 5px;
+    margin-top: 20px;
+    padding: 10px 0;
     border-top: 2px solid black;
 }
 
