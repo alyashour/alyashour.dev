@@ -1,0 +1,68 @@
+---
+const { cards } = Astro.props
+---
+
+<div class="scroller">
+    {cards.map((card) => (
+        <div>
+            <h3>{card["Title"]}</h3>
+            <hr />
+            <img src={card["Image"]} alt={card["ImageAlt"] ?? ""} />
+            <hr />
+            <ul>
+                {card["Tags"].map((tag) => ( 
+                    <li>{tag}</li>
+                ))}
+                <li>
+                    <a href={card["GitHubLink"]}>GitHub</a>
+                </li>
+            </ul>
+        </div>
+    ))}
+    
+</div>
+
+<style>
+    .scroller {
+        display: flex;
+        gap: 30px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+        margin: 20px 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .scroller > * {
+        flex-shrink: 0;
+        width: min(45%, 200px);
+        max-width: 250px;
+        border: 2px solid black;
+        padding: 0 10px 10px 10px;
+    }
+
+    .scroller > * h3 {
+        overflow-wrap: break-word;
+        overflow: clip;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: medium;
+        height: 2.5rem;
+    }
+
+    .scroller > * img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .scroller > * hr {
+        margin: 10px 0;
+    }
+
+    .scroller > *:hover img {
+        transform: scale(1.05);
+    }
+</style>

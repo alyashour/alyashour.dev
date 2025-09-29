@@ -1,0 +1,100 @@
+---
+const { data, linkKey } = Astro.props;
+
+// Keys to display (skip the link column if using linkKey)
+const keys = Object.keys(data[0] ?? {}).filter((key) => key !== linkKey);
+---
+
+<table>
+  <thead>
+    <tr>
+      {keys.map((key) => <th>{key}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      data.map((row) => (
+        <tr>
+          {keys.map((key, i) => {
+            const cell = row[key];
+
+            // First visible column as link if linkKey exists
+            if (i === 0 && linkKey && row[linkKey]) {
+              // Render raw HTML if specified
+              if (
+                cell &&
+                typeof cell === "object" &&
+                cell.html &&
+                "value" in cell
+              ) {
+                return (
+                  <td>
+                    <a
+                      href={row[linkKey]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      set:html={cell.value}
+                    />
+                  </td>
+                );
+              }
+              return (
+                <td>
+                  <a href={row[linkKey]}>{cell}</a>
+                </td>
+              );
+            }
+
+            // Other columns
+            if (
+              cell &&
+              typeof cell === "object" &&
+              cell.html &&
+              "value" in cell
+            ) {
+              return <td set:html={cell.value} />;
+            }
+            return <td>{cell}</td>;
+          })}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  table {
+    width: 100%;
+    table-layout: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+
+  th {
+    text-align: left;
+    background-color: #8e9baa;
+    color: white;
+  }
+
+  th,
+  td {
+    vertical-align: top;
+    padding: 1px 4px;
+
+    /* for wrapping */
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* every other row gets a diff color */
+  tbody tr:nth-child(even) {
+    background-color: #f0f0f0
+  }
+
+  td a {
+    color: black;
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,54 @@
+<header>
+    <div class="header-title">
+        <h1><a href="/"><b>Aly Ashour</b></a></h1>
+        <p>
+            Comp. Software Eng. Student at Western University, Linux Co-op at JD
+            Power
+        </p>
+    </div>
+    <div class="header-info">
+        <p>
+            Github: <a href="https://github.com/alyashour"
+                >github.com/alyashour</a
+            >
+        </p>
+        <p>
+            LinkedIn: <a href="https://www.linkedin.com/in/alymashour/"
+                >linkedin.com/in/alymashour</a
+            >
+        </p>
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        gap: 5px;
+        border-bottom: 2px solid black;
+        margin-bottom: 10px;
+    }
+
+    .header-info p {
+        font-size: small;
+    }
+
+    .header-title {
+        flex: 1;
+        margin: 5px 0;
+    }
+
+    .header-info {
+        flex: 0 0 auto;
+        /* Don't grow, don't shrink, auto size */
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-bottom: 5px;
+        justify-content: flex-end;
+        padding: 5px;
+    }
+
+    .header-info a {
+        padding-left: 1em;
+    }
+</style>

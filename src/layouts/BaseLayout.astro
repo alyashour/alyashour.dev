@@ -1,0 +1,97 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aly Ashour</title>
+        <link rel="icon" type="image/ico" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+    </head>
+    <body>
+        <div id="foreground">
+            <Header />
+
+            <main>
+                <!-- Child content goes here -->
+                <slot />
+            </main>
+
+            <Footer />
+        </div>
+    </body>
+</html>
+
+<style is:global>
+    * {
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    html, body, #foreground {
+        min-height: 90vh;
+    }
+
+    main {
+        flex: 1;
+    }
+
+    #foreground {
+        margin: 40px auto;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /*
+    * TYPOGRAPHY
+    */
+    h1 {
+        margin: 5px 0px;
+    }
+
+    h1 a {
+        color: black;
+    }
+
+    h1 a:hover {
+        color: black;
+    }
+
+    h2,
+    h3 {
+        margin: 20px 0 5px 0;
+    }
+
+    a {
+        color: #0066cc;
+        text-decoration: none; /* remove underline */
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #004999;
+        text-decoration: underline; 
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    /*
+    * QUERIES
+    */
+
+    /* If we are wide enough */
+    @media (min-width: 1200px) {
+        #foreground {
+            
+            padding: 30px;
+            border: 2px solid black;
+        }
+    }
+</style>
