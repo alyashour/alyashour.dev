@@ -31,8 +31,6 @@ const keys = Object.keys(data[0] ?? {}).filter((key) => key !== linkKey);
                   <td>
                     <a
                       href={row[linkKey]}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       set:html={cell.value}
                     />
                   </td>
