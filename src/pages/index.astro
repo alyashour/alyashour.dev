@@ -1,7 +1,144 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Columns from "../layouts/Columns.astro";
+import Table from "../components/Table.astro";
+import CardSideScroller from "../layouts/CardSideScroller.astro";
 
+// TEMP
+const cwoData = [
+	{ Title: "Portfolio", Description: "You're here!", Link: "https://www.alyashour.dev"},
+	{ Title: "Autopilot P&C Lead", Description: "", Link: "https://weautopilot.com"},
+];
+
+const subpages = [
+	{ Title: "Roadmap", Link: "/roadmap" }, 
+	{ Title: "Startups", Link: "/startups" }
+];
+
+const readingList = [
+	{
+		Title: "NASA Systems Engineering Handbook",
+		Author: "R. Shishko, R. Aster, RC. Cassingham",
+	},
+	{ Title: "Fighting the Great War", Author: "MS. Neiberg" },
+];
+
+const cards = [
+	{ 
+		Title: "Gerstner Waves Water Shader", 
+		Image: "/gerstner_waves.gif", 
+		ImageAlt: "Waves Graphics Demo",
+		Tags: ["C++", "OpenGL"],
+		GitHubLink: "https://github.com/alyashour/Gerstner-waves"
+	},
+	{ 
+		Title: "Marching Cubes Surface Extraction", 
+		Image: "/marching_cubes.gif", 
+		ImageAlt: "Marching Cubes Demo",
+		Tags: ["Python", "OpenGL"],
+		GitHubLink: "https://github.com/alyashour/Marching-Cube-Renderer"
+	},
+	{ 
+		Title: "Bezier Curve Editor", 
+		Image: "/bezier_curve.gif", 
+		ImageAlt: "Bezier Curve Demo",
+		Tags: ["Python", "OpenGL"],
+		GitHubLink: "https://github.com/alyashour/Bezier-Curve-Editor"
+	},
+]
 ---
 
-<script>
-    window.location.href = "/home";
-</script>
+<BaseLayout>
+	<!-- Home page -->
+	<!-- Left/right split -->
+	<Columns>
+		<!-- Main content section -->
+		<section>
+			<h2>Hi, I'm Aly</h2>
+			<p>
+				I'm a software engineering student at the University of Western Ontario
+				with a deep love for computers, technology, and all the puzzles they bring.
+			</p>
+			<p>
+				I engineer software, design circuits, and work on projects both solo and
+				with any team that shares the drive to create something meaningful.
+			</p>
+
+			<h3>What Drives Me</h3>
+
+			<p>
+				I'm passionate about building systems that tackle real-world challenges
+				 — things that matter beyond the computer screen or classroom. 
+				 My interests focus on:
+			</p>
+			<ul>
+				<li>
+					<b>Autonomy</b> — Not just self-driving cars, but teaching machines 
+					to think, adapt, and solve problems we can't.
+				</li>
+				<li>
+					<b>Engineering With Impact</b> — Creating tools that help people, 
+					improve lives, and make the world a little better.
+				</li>
+				<li>
+					<b>Global solutions</b> — especially for public systems like
+					transit, safety, or accessibility. We have a responsibility to
+					create for the whole world.
+				</li>
+				<li>
+					<b>Difficult problems</b> — I'm drawn to ambiguity, complexity, and 
+					the unsolved. Every challenge is an invitation to push technical boundaries 
+					further.
+				</li>
+			</ul>
+			<p>
+				Outside of engineering, I love space, physics, and ancient history, I play
+				chess, football (the real kind), and my favourite song is <a
+					href="https://www.youtube.com/watch?v=z7f3SF4lGmI"
+					>Fragile by Laufey.</a
+				>
+			</p>
+		</section>
+
+		<!-- Aside, info section -->
+		<aside>
+			<h3>Currently working on <a href="">(+)</a></h3>
+			<Table data={cwoData} linkKey="Link"/>
+
+			<!-- For any child pages -->
+			<h3>Subpage Index <a href="">(+)</a></h3>
+			<Table data={subpages} linkKey="Link"/>
+
+			<!-- The books I'm reading -->
+			<h3>Currently Reading</h3>
+			<Table data={readingList} />
+		</aside>
+	</Columns>
+
+	<!-- Projects -->
+	<div>
+		<h2>Projects</h2>
+		<p>
+			I'm quite mixed-genre when it comes to CS - you'll find projects of
+			mine spanning lots of subjects - but here are some of my favourites!
+		</p>
+
+		<CardSideScroller cards={cards} />
+
+		<p><b>See more <a href="/projects/">here</a>!</b></p>
+	</div>
+</BaseLayout>
+
+<style>
+	section {
+		flex: 2 1 0;
+	}
+
+	aside {
+		flex: 1 1 0;
+	}
+
+	ul li {
+		margin: 0.5em 0;
+	}
+</style>
