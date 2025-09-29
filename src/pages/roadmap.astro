@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Table from "../components/Table.astro";
+
+// Versions data
+const versions = [
+  {
+    Version: "v0.1.0",
+    Title: "Initial Launch!",
+    "Date (planned or completed)": { value: '<p style="color: green">19/06/25</p>', html: true },
+  },
+  {
+    Version: "v0.2.0",
+    Title: "Roadmap added (hardcoded)",
+    "Date (planned or completed)": { value: '<p style="color: green">31/06/25</p>', html: true },
+  },
+  {
+    Version: "v0.2.1",
+    Title: "Currently reading list",
+    "Date (planned or completed)": { value: '<p style="color: green">17/07/25</p>', html: true },
+  },
+  {
+    Version: "v0.2.2",
+    Title: "Updated styles & footer",
+    "Date (planned or completed)": { value: '<p style="color: green">28/09/25</p>', html: true },
+  },
+  {
+    Version: "v0.3.0",
+    Title: "Framework move",
+    "Date (planned or completed)": { value: '<p style="color: lightsalmon">Planned</p>', html: true },
+  },
+  {
+    Version: "v0.4.0",
+    Title: { value: 'Smart pull from <a href=\"https://github.com/alyashour/vault-api\">Vault API</a>. Includes projects, reading list, and "currently working on".', html: true },
+    "Date (planned or completed)": { value: '<p style="color: lightsalmon">Planned</p>', html: true },
+  },
+  {
+    Version: "v0.4.1",
+    Title: 'Determine subpages automatically from repo config.',
+    "Date (planned or completed)": { value: '<p style="color: lightsalmon">Planned</p>', html: true },
+  },
+];
+
+// Features/Ideas data
+const ideas = [
+  {
+    Title: "Framework move",
+    Description: "The current CSS/navigation system isn't as clean as I'd like it to be. I'm considering moving to a framework with better support or should I find another way.",
+    "Release Version (if planned)": { value: '<p style="color: lightsalmon">v0.3.0</p>', html: true },
+  },
+  {
+    Title: "Margin/padding in Table Rows",
+    Description: "Need to move text inwards so it's not touching the border in tables",
+    "Release Version (if planned)": { value: '<p style="color: lightsalmon">v0.3.0</p>', html: true },
+  },
+  {
+    Title: "Add 404 page",
+    Description: "The current 404 page is the default. Should be changed.",
+    "Release Version (if planned)": { value: '<p style="color: slategray">Unplanned</p>', html: true}
+  },
+  {
+    Title: "Project Images full Screen",
+    Description: "The images should become full screen on click.",
+    "Release Version (if planned)": { value: '<p style="color: slategray">Unplanned</p>', html: true}
+  },
+];
+---
+
+<BaseLayout>
+  <h2>Version History</h2>
+  <Table data={versions} />
+
+  <h2>Features</h2>
+  <p>
+    These are features I'd like to add in the future and if they are/aren't
+    already planned in the version roadmap above.
+  </p>
+  <Table data={ideas} />
+</BaseLayout>
+
+<style>
+    p {
+        margin: 5px 0;
+    }
+</style>

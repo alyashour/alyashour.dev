@@ -31,9 +31,19 @@ import Footer from "../components/Footer.astro";
         font-family: Helvetica, Arial, sans-serif;
     }
 
+    html, body, #foreground {
+        min-height: 90vh;
+    }
+
+    main {
+        flex: 1;
+    }
+
     #foreground {
         margin: 40px auto;
         width: 80%;
+        display: flex;
+        flex-direction: column;
     }
 
     /*
