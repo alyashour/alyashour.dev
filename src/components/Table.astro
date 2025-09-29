@@ -1,0 +1,80 @@
+---
+/**
+ * This is a smart table.
+ * Use data to input the data for the table.
+ * If a link is needed pass it in the data prop and provide the key
+ * to the keys in `linkKey`.
+ */
+const { data, linkKey } = Astro.props;
+
+// Compute the keys to display (skip the link column if using it for linking)
+const keys = Object.keys(data[0] ?? {}).filter((key) => key !== linkKey);
+---
+
+<table>
+  <thead>
+    <tr>
+      {keys.map((key) => <th>{key}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    {
+      data.map((row) => (
+        <tr>
+          {keys.map((key, i) => {
+            // Make the first visible column a link if linkKey exists in the row
+            if (i === 0 && linkKey && row[linkKey]) {
+              return (
+                <td>
+                  <a
+                    href={row[linkKey]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {row[key]}
+                  </a>
+                </td>
+              );
+            }
+            return <td>{row[key]}</td>;
+          })}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+
+  th {
+    text-align: left;
+    background-color: lightgray;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  td a {
+    color: blue;
+    text-decoration: underline;
+  }
+
+  table a {
+    color: black;
+    text-decoration: underline;
+  }
+</style>
