@@ -7,23 +7,30 @@ import CardSideScroller from "../layouts/CardSideScroller.astro";
 // TEMP
 const cwoData = [
 	{ Title: "Portfolio", Description: "You're here!", Link: "https://www.alyashour.dev"},
-	{ Title: "Autopilot P&C Lead", Description: "", Link: "https://weautopilot.com"},
+	{ Title: "Robotic Arm", Description: "4 axis, partially 3D printed.", Link: "" },
+	{ Title: "Autopilot P&C Team Principal", Description: "20 developers.", Link: "https://weautopilot.com"},
 ];
 
 const subpages = [
+	{ Title: "Projects", Link: "/projects/" },
 	{ Title: "Roadmap", Link: "/roadmap/" }, 
-	{ Title: "WEAP", Link: "/weap/" }
+	{ Title: "WE Autopilot", Link: "/weap/" },
 ];
 
 const readingList = [
-	{
-		Title: "NASA Systems Engineering Handbook",
-		Author: "R. Shishko, R. Aster, RC. Cassingham",
-	},
+	{ Title: "Modern C", Author: "Jens Gustedt" },
 	{ Title: "Fighting the Great War", Author: "MS. Neiberg" },
+	{ Title: "Nineteen Eighty-Four", Author: "George Orwell" },
 ];
 
 const cards = [
+	{
+		Title: "Dynamic Transport Network Design System",
+		Image: "/dyn_transport.png",
+		ImageAlt: "Dynamic Transport Dataset Visualization",
+		Tags: ["Python", "Machine Learning"],
+		GitHubLink: "https://github.com/alyashour/Dyn-Transport-Route-Design-System"
+	},
 	{ 
 		Title: "Gerstner Waves Water Shader", 
 		Image: "/gerstner_waves.avif", 
@@ -56,7 +63,7 @@ const cards = [
 		<section>
 			<h2>Hi, I'm Aly</h2>
 			<p>
-				I'm a software engineering student at the University of Western Ontario
+				I'm a software engineering student at Western University
 				with a deep love for computers, technology, and all the puzzles they bring.
 			</p>
 			<p>
@@ -73,11 +80,10 @@ const cards = [
 			</p>
 			<ul>
 				<li>
-					<b>Autonomy</b> — Not just self-driving cars, but teaching machines 
-					to think, adapt, and solve problems we can't.
+					<b>Robotics</b> — I love bringing tech solutions into real life. This includes autonomous vehicles, robots, and control systems.
 				</li>
 				<li>
-					<b>Engineering With Impact</b> — Creating tools that help people, 
+					<b>Social Impact</b> — Creating tools that help people, 
 					improve lives, and make the world a little better.
 				</li>
 				<li>
@@ -119,7 +125,7 @@ const cards = [
 	<div>
 		<h2>Projects</h2>
 		<p>
-			I'm quite mixed-genre when it comes to CS - you'll find projects of
+			I'm quite mixed-genre when it comes to my projects - you'll find projects of
 			mine spanning lots of subjects - but here are some of my favourites!
 		</p>
 
