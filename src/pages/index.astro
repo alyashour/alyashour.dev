@@ -71,44 +71,46 @@ import marchingCubes from "../assets/images/marching-cube-demo.gif";
   </div>
 
   <div id="experience" class="section experience-section">
-    <h2 class="section-heading">Experience</h2>
-    <div class="timeline">
-      <div class="timeline-row">
-        <div class="timeline-date">Current</div>
-        <div class="timeline-main">
-          <h4 class="timeline-role">AISW Engineering Intern</h4>
-          <div class="timeline-org">Qualcomm</div>
-        </div>
-      </div>
-      <div class="timeline-row">
-        <div class="timeline-date">Current</div>
-        <div class="timeline-main timeline-main-split">
-          <div class="timeline-detail">
-            <h4 class="timeline-role">
-              Founder, President, Planning &amp; Control Lead
-            </h4>
-            <div class="timeline-org">
-              <a href="https://weautopilot.com">WE Autopilot</a>
-            </div>
-            <div class="timeline-desc">
-              Building a self-driving car at Western University
-            </div>
+    <div class="experience-content">
+      <h2 class="section-heading">Experience</h2>
+      <div class="timeline">
+        <div class="timeline-row">
+          <div class="timeline-date">Current</div>
+          <div class="timeline-main">
+            <h4 class="timeline-role">AISW Engineering Intern</h4>
+            <div class="timeline-org">Qualcomm</div>
           </div>
-          <Image
-            src={mnistLecture}
-            alt="Teaching a lecture on MNIST digit classification at WE Autopilot"
-            width={380}
-            loading="eager"
-            fetchpriority="high"
-            class="thumb timeline-image"
-          />
         </div>
-      </div>
-      <div class="timeline-row timeline-row-last">
-        <div class="timeline-date">In progress</div>
-        <div class="timeline-main">
-          <h4 class="timeline-role">B.Eng, Software Engineering</h4>
-          <div class="timeline-org">Western University</div>
+        <div class="timeline-row">
+          <div class="timeline-date">Current</div>
+          <div class="timeline-main timeline-main-split">
+            <div class="timeline-detail">
+              <h4 class="timeline-role">
+                Founder, President, Planning &amp; Control Lead
+              </h4>
+              <div class="timeline-org">
+                <a href="https://weautopilot.com">WE Autopilot</a>
+              </div>
+              <div class="timeline-desc">
+                Building a self-driving car at Western University
+              </div>
+            </div>
+            <Image
+              src={mnistLecture}
+              alt="Teaching a lecture on MNIST digit classification at WE Autopilot"
+              width={380}
+              loading="eager"
+              fetchpriority="high"
+              class="thumb timeline-image"
+            />
+          </div>
+        </div>
+        <div class="timeline-row timeline-row-last">
+          <div class="timeline-date">In progress</div>
+          <div class="timeline-main">
+            <h4 class="timeline-role">B.Eng, Software Engineering</h4>
+            <div class="timeline-org">Western University</div>
+          </div>
         </div>
       </div>
     </div>
@@ -168,23 +170,32 @@ import marchingCubes from "../assets/images/marching-cube-demo.gif";
     position: relative;
     max-width: 1040px;
     margin: 0 auto;
-    padding: 110px 32px 80px;
-    overflow: hidden;
+    padding: 150px 32px 110px;
+    min-height: 520px;
+    box-sizing: border-box;
   }
 
   .hero-image {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
     background:
       url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Colosse_de_Rhodes_%28Barclay%29.jpg/960px-Colosse_de_Rhodes_%28Barclay%29.jpg")
-      center 25% / cover no-repeat;
+      center 15% / cover no-repeat;
     filter: sepia(0.45) saturate(0.65) contrast(1.05) brightness(0.95);
     opacity: 0.75;
   }
 
   .hero-gradient {
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
     background: linear-gradient(
       180deg,
       rgba(243, 242, 242, 0.55) 0%,
@@ -288,7 +299,33 @@ import marchingCubes from "../assets/images/marching-cube-demo.gif";
   }
 
   .experience-section {
+    position: relative;
     padding: 70px 32px 80px;
+  }
+
+  .experience-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(560px, 80vw);
+    height: 420px;
+    max-height: 80%;
+    transform: translate(-50%, -50%);
+    background-position: center 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: sepia(0.45) saturate(0.65) contrast(1.05) brightness(0.95);
+    opacity: 0.65;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 72%);
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      black 30%,
+      transparent 72%
+    );
+  }
+
+  .experience-content {
+    position: relative;
   }
 
   .timeline {
