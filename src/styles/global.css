@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&display=swap');
+
+:root {
+  --color-bg: #f3f2f2;
+  --color-text: #201f1d;
+  --color-text-secondary: rgba(32, 31, 29, 0.8);
+  --color-text-muted: rgba(32, 31, 29, 0.58);
+  --color-text-faint: rgba(32, 31, 29, 0.5);
+  --color-border: rgba(32, 31, 29, 0.14);
+  --color-border-strong: rgba(32, 31, 29, 0.16);
+
+  --color-accent: #b68235;
+  --color-accent-hover: #8a641f;
+
+  --color-badge-bg: #fff3e4;
+  --color-badge-text: #7d5411;
+  --color-panel-bg: rgba(243, 242, 242, 0.6);
+  --color-thumb-border: #eae9e9;
+
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-body: Lora, serif;
+  --font-mono: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* layout primitives */
+.section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section-narrow {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 14px;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 44px;
+  margin: 0 0 14px;
+}
+
+.lede {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  max-width: 520px;
+  margin: 0;
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 11px 22px;
+}
+
+.btn-outline {
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.btn-secondary {
+  color: var(--color-text);
+  border: 1px solid var(--color-border-strong);
+}
+
+/* badges */
+.badge-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
+}
+
+/* images */
+.thumb {
+  filter: sepia(0.22) saturate(0.82) contrast(1.05);
+  border: 6px solid var(--color-thumb-border);
+  outline: 1px solid var(--color-border-strong);
+}
+
+.thumb-hero {
+  filter: sepia(0.22) saturate(0.82) contrast(1.05);
+  border: 8px solid var(--color-thumb-border);
+  outline: 1px solid var(--color-border-strong);
+}
+
+/* filter buttons (project list) */
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 7px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.filter-btn.is-active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.is-hidden {
+  display: none;
+}

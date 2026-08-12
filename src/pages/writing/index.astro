@@ -1,0 +1,85 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="Writing — Aly Ashour" active="writing">
+  <div class="section-narrow intro-section">
+    <div class="eyebrow">Writing</div>
+    <h1 class="page-title">Notes &amp; reading</h1>
+    <p class="lede lede-full">
+      Longer write-ups on projects will land here over time. For now, what
+      I'm reading.
+    </p>
+  </div>
+
+  <div class="section-narrow list-section">
+    <div class="divider list-divider"></div>
+    <h3 class="list-heading">Currently reading</h3>
+    <div class="reading-list">
+      <div class="reading-row">
+        <span class="reading-title">Modern C</span>
+        <span class="reading-author">Jens Gustedt</span>
+      </div>
+      <div class="reading-row">
+        <span class="reading-title">Fighting the Great War</span>
+        <span class="reading-author">M.S. Neiberg</span>
+      </div>
+      <div class="reading-row reading-row-last">
+        <span class="reading-title">Nineteen Eighty-Four</span>
+        <span class="reading-author">George Orwell</span>
+      </div>
+    </div>
+  </div>
+</SiteLayout>
+
+<style>
+  .intro-section {
+    padding: 100px 32px 30px;
+  }
+
+  .lede-full {
+    max-width: none;
+  }
+
+  .list-section {
+    padding: 30px 32px 110px;
+  }
+
+  .list-divider {
+    margin-bottom: 34px;
+  }
+
+  .list-heading {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0 0 22px;
+  }
+
+  .reading-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reading-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .reading-row-last {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .reading-title {
+    font-family: var(--font-serif);
+    font-size: 17px;
+  }
+
+  .reading-author {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+</style>

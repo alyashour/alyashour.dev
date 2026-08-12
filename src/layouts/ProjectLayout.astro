@@ -1,0 +1,93 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  heading: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  tags: string[];
+  githubUrl: string;
+}
+
+const { title, heading, image, imageAlt, tags, githubUrl } =
+  Astro.props as Props;
+---
+
+<SiteLayout title={title} active="projects">
+  <div class="project-detail-nav">
+    <a href="/projects/" class="back-link">← All projects</a>
+  </div>
+
+  <div class="project-detail-media">
+    <Image
+      src={image}
+      alt={imageAlt}
+      width={1200}
+      loading="eager"
+      fetchpriority="high"
+      class="thumb-hero project-detail-img"
+    />
+  </div>
+
+  <div class="project-detail-body">
+    <div class="badge-row">
+      {tags.map((tag) => <span class="badge">{tag}</span>)}
+    </div>
+    <h1 class="page-title project-detail-title">{heading}</h1>
+    <div class="project-detail-desc">
+      <slot />
+    </div>
+    <a href={githubUrl} class="btn btn-outline">View source on GitHub</a>
+  </div>
+</SiteLayout>
+
+<style>
+  .project-detail-nav {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 70px 32px 0;
+  }
+
+  .back-link {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .project-detail-media {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 24px 32px 40px;
+  }
+
+  .project-detail-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .project-detail-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+  }
+
+  .project-detail-title {
+    font-size: 38px;
+    margin-bottom: 20px;
+  }
+
+  .project-detail-desc :global(p) {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin: 0 0 16px;
+  }
+
+  .project-detail-desc :global(p:last-of-type) {
+    margin-bottom: 32px;
+  }
+</style>

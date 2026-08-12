@@ -1,0 +1,62 @@
+---
+interface Props {
+  active?: "about" | "experience" | "projects" | "writing" | "contact";
+}
+
+const { active } = Astro.props as Props;
+
+const links = [
+  { key: "about", href: "/#about", label: "About" },
+  { key: "experience", href: "/#experience", label: "Experience" },
+  { key: "projects", href: "/projects/", label: "Projects" },
+  { key: "writing", href: "/writing/", label: "Writing" },
+  { key: "contact", href: "/#contact", label: "Contact" },
+];
+---
+
+<header class="site-header">
+  <a href="/" class="logo">Aly Ashour</a>
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="nav-link"
+        aria-current={active === link.key ? "page" : undefined}
+      >
+        {link.label}
+      </a>
+    ))
+  }
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    z-index: 10;
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--color-text);
+    margin-right: auto;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text);
+  }
+
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+</style>

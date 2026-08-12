@@ -1,0 +1,24 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import gerstnerWaves from "../../assets/images/gernster-waves.gif";
+---
+
+<ProjectLayout
+  title="Gerstner Waves Water Shader — Aly Ashour"
+  heading="Gerstner Waves Water Shader"
+  image={gerstnerWaves}
+  imageAlt="Gerstner Waves Water Shader"
+  tags={["C++", "OpenGL"]}
+  githubUrl="https://github.com/alyashour/Gerstner-waves"
+>
+  <p>
+    A real-time ocean surface shader built in C++ and OpenGL, using the
+    Gerstner wave model to animate a physically plausible water surface.
+    Vertex displacement builds the wave geometry directly on the GPU, and
+    per-fragment lighting picks out the resulting crests and troughs.
+  </p>
+  <p>
+    Tessellation and geometry shaders drive the surface detail. Full source
+    and build instructions are on GitHub.
+  </p>
+</ProjectLayout>

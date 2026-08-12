@@ -1,0 +1,24 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import marchingCubes from "../../assets/images/marching-cube-demo.gif";
+---
+
+<ProjectLayout
+  title="Marching Cubes Surface Extraction — Aly Ashour"
+  heading="Marching Cubes Surface Extraction"
+  image={marchingCubes}
+  imageAlt="Marching Cubes Surface Extraction"
+  tags={["Python", "OpenGL"]}
+  githubUrl="https://github.com/alyashour/Marching-Cube-Renderer"
+>
+  <p>
+    An implementation of the marching cubes algorithm, which walks a 3D
+    scalar field cube by cube and extracts a polygonal surface wherever it
+    crosses a chosen threshold. The result is rendered in OpenGL.
+  </p>
+  <p>
+    A classic technique for turning volumetric data — voxel grids, implicit
+    functions, scan data — into a mesh a renderer can draw. Full source is on
+    GitHub.
+  </p>
+</ProjectLayout>

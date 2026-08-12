@@ -1,0 +1,128 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import dynTransport from "../../assets/images/dyn_transport.png";
+import gerstnerWaves from "../../assets/images/gernster-waves.gif";
+import marchingCubes from "../../assets/images/marching-cube-demo.gif";
+import bezierCurve from "../../assets/images/bezier-demo.gif";
+---
+
+<SiteLayout title="Projects — Aly Ashour" active="projects">
+  <div class="section intro-section">
+    <div class="eyebrow">Projects</div>
+    <h1 class="page-title">Selected work</h1>
+    <p class="lede">
+      Graphics, robotics, and systems projects. Source for each is on GitHub.
+    </p>
+  </div>
+
+  <div class="section grid-section">
+    <div class="filter-bar">
+      <button class="filter-btn is-active" data-filter-btn data-tag="All"
+        >All</button
+      >
+      <button class="filter-btn" data-filter-btn data-tag="OpenGL"
+        >OpenGL</button
+      >
+      <button class="filter-btn" data-filter-btn data-tag="C++">C++</button>
+      <button class="filter-btn" data-filter-btn data-tag="Python"
+        >Python</button
+      >
+      <button
+        class="filter-btn"
+        data-filter-btn
+        data-tag="Machine Learning">Machine Learning</button
+      >
+    </div>
+    <div id="project-grid" class="project-grid-full">
+      <ProjectCard
+        href="/projects/dynamic-transport/"
+        image={dynTransport}
+        imageAlt="Dynamic Transport Network Design System"
+        title="Dynamic Transport Network Design System"
+        tags={["Python", "Machine Learning"]}
+        description="A data-driven look at transit network design — modeling routes and stops for a city transport system and visualizing the result in 3D."
+        githubUrl="https://github.com/alyashour/Dyn-Transport-Route-Design-System"
+        filterTags="Python,Machine Learning"
+        priority
+      />
+      <ProjectCard
+        href="/projects/gerstner-waves/"
+        image={gerstnerWaves}
+        imageAlt="Gerstner Waves Water Shader"
+        title="Gerstner Waves Water Shader"
+        tags={["C++", "OpenGL"]}
+        description="A real-time ocean surface shader using the Gerstner wave model to animate a physically plausible water surface."
+        githubUrl="https://github.com/alyashour/Gerstner-waves"
+        filterTags="C++,OpenGL"
+        priority
+      />
+      <ProjectCard
+        href="/projects/marching-cubes/"
+        image={marchingCubes}
+        imageAlt="Marching Cubes Surface Extraction"
+        title="Marching Cubes Surface Extraction"
+        tags={["Python", "OpenGL"]}
+        description="An implementation of marching cubes, extracting a polygonal surface from a 3D scalar field and rendering it in OpenGL."
+        githubUrl="https://github.com/alyashour/Marching-Cube-Renderer"
+        filterTags="Python,OpenGL"
+        priority
+      />
+      <ProjectCard
+        href="/projects/bezier-curve/"
+        image={bezierCurve}
+        imageAlt="Bezier Curve Editor"
+        title="Bezier Curve Editor"
+        tags={["Python", "OpenGL"]}
+        description="An interactive editor for constructing and manipulating Bezier curves by hand."
+        githubUrl="https://github.com/alyashour/Bezier-Curve-Editor"
+        priority
+        filterTags="Python,OpenGL"
+      />
+    </div>
+  </div>
+</SiteLayout>
+
+<script>
+  const buttons = document.querySelectorAll("[data-filter-btn]");
+  const cards = document.querySelectorAll("[data-card]");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tag = btn.getAttribute("data-tag");
+      buttons.forEach((b) =>
+        b.classList.toggle("is-active", b.getAttribute("data-tag") === tag),
+      );
+      cards.forEach((card) => {
+        const tags = (card.getAttribute("data-tags") ?? "").split(",");
+        card.classList.toggle(
+          "is-hidden",
+          !(tag === "All" || tags.includes(tag ?? "")),
+        );
+      });
+    });
+  });
+</script>
+
+<style>
+  .intro-section {
+    padding: 90px 32px 30px;
+  }
+
+  .grid-section {
+    padding: 40px 32px 100px;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .project-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+</style>

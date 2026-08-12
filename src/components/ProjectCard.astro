@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  href: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  title: string;
+  variant?: "compact" | "full";
+  tech?: string;
+  tags?: string[];
+  description?: string;
+  githubUrl?: string;
+  filterTags?: string;
+  priority?: boolean;
+}
+
+const {
+  href,
+  image,
+  imageAlt,
+  title,
+  variant = "full",
+  tech,
+  tags = [],
+  description,
+  githubUrl,
+  filterTags,
+  priority = false,
+} = Astro.props as Props;
+---
+
+<div class="project-card" data-card data-tags={filterTags}>
+  <a href={href} class="project-card-link">
+    <Image
+      src={image}
+      alt={imageAlt}
+      width={640}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
+      class="thumb project-card-img"
+    />
+    <h3
+      class:list={[
+        "project-card-title",
+        variant === "compact" && "project-card-title-compact",
+      ]}
+    >
+      {title}
+    </h3>
+  </a>
+  {
+    variant === "compact" && tech && (
+      <div class="project-card-tech">{tech}</div>
+    )
+  }
+  {
+    variant === "full" && (
+      <>
+        <div class="badge-row">
+          {tags.map((tag) => (
+            <span class="badge">{tag}</span>
+          ))}
+        </div>
+        {description && <p class="project-card-desc">{description}</p>}
+        {githubUrl && (
+          <a href={githubUrl} class="project-card-github">
+            View on GitHub →
+          </a>
+        )}
+      </>
+    )
+  }
+</div>
+
+<style>
+  .project-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    margin-bottom: 12px;
+  }
+
+  .project-card-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 21px;
+    margin: 0 0 6px;
+  }
+
+  .project-card-title-compact {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+
+  .project-card-tech {
+    font-size: 12px;
+    color: var(--color-text-faint);
+  }
+
+  .project-card-desc {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 10px;
+  }
+
+  .project-card-github {
+    font-size: 13px;
+    color: var(--color-accent);
+  }
+</style>

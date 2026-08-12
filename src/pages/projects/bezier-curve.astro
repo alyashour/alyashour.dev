@@ -1,0 +1,23 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import bezierCurve from "../../assets/images/bezier-demo.gif";
+---
+
+<ProjectLayout
+  title="Bezier Curve Editor — Aly Ashour"
+  heading="Bezier Curve Editor"
+  image={bezierCurve}
+  imageAlt="Bezier Curve Editor"
+  tags={["Python", "OpenGL"]}
+  githubUrl="https://github.com/alyashour/Bezier-Curve-Editor"
+>
+  <p>
+    An interactive editor for constructing and manipulating Bezier curves by
+    hand — placing and dragging control points and watching the curve update
+    in real time, rendered with OpenGL.
+  </p>
+  <p>
+    A small tool built to get an intuitive feel for how control points shape
+    a curve. Full source is on GitHub.
+  </p>
+</ProjectLayout>
